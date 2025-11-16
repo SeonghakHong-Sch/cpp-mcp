@@ -383,6 +383,12 @@ void server::register_tool(const tool& tool, tool_handler handler) {
             }
             
             json tool_args = params.contains("arguments") ? params["arguments"] : json::array();
+            if (params.contains("request_id")) {
+                tool_args["request_id"] = params["request_id"].dump();
+            }
+            else {
+                tool_args["request_id"] = "no request_id";
+            }
 
             if (tool_args.is_string()) {
                 try {
