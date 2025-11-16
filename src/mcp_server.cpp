@@ -375,6 +375,8 @@ void server::register_tool(const tool& tool, tool_handler handler) {
             }
             
             std::string tool_name = params["name"];
+            LOG_INFO("Tool called: ", tool_name);
+
             auto it = tools_.find(tool_name);
             if (it == tools_.end()) {
                 throw mcp_exception(error_code::invalid_params, "Tool not found: " + tool_name);
