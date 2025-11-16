@@ -699,9 +699,9 @@ json server::process_request(const request& req, const std::string& session_id) 
         if (handler) {
             // Call handler
             LOG_INFO("Calling method handler: ", req.method);
-            json params_with_id = req.params;
-            params_with_id["request_id"] = req.id;            
-            json result = handler(req.params, session_id);
+            json params = req.params;
+            params["request_id"] = req.id;
+            json result = handler(params, session_id);
             
             // Create success response
             LOG_INFO("Method call successful: ", req.method);
